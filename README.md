@@ -56,121 +56,25 @@
 각 부분을 따로 만든 뒤 마지막에 연결한다.
 
 ```mermaid
-flowchart TB
+flowchart TD
+    A([손님 대기]) --> B[키오스크 주문 시작]
+    B --> C[메뉴 선택 및 커스텀]
+    C --> D[장바구니 확인]
 
-A([손님 입점<br/>키오스크 앞 대기])
-B[키오스크 터치<br/>주문 시작 / 메뉴 로딩]
-C[빈 장바구니 생성]
-D[메뉴 화면 출력]
-E[메뉴 및 상세 메뉴 선택<br/>Coffee / Food / MD / 인기메뉴]
-F[메뉴 커스텀<br/>옵션 선택]
-G[장바구니 담기 및 확인]
+    D --> E{주문 확정}
+    E -->|No| C
+    E -->|Yes| F[주문 내역 및 금액 확인]
 
-%% ============================
-%% 주문 확정
-%% Yes 중앙 / No 왼쪽
-%% ============================
+    F --> G{카드 결제 성공}
+    G -->|No| H[POS 현금결제 안내<br/>count - 1]
+    G -->|Yes| I{영수증 출력}
 
-subgraph ORDER_ROW[" "]
-direction LR
-R1[추가 주문<br/>메뉴 화면 이동]
-H{주문 확정}
-X1[추가 주문<br/>메뉴 화면 이동]
-R1 ~~~ H
-H ~~~ X1
-end
+    I -->|Yes| J[영수증 출력]
+    I -->|No| K[주문 완료<br/>count - 1]
 
-I[최종 주문 내역 및<br/>결제 금액 확인]
-
-%% ============================
-%% 카드 결제
-%% Yes 중앙 / No 왼쪽
-%% ============================
-
-subgraph CARD_ROW[" "]
-direction LR
-R2[POS 현금결제 안내<br>키오스크 종료<br>customer count - 1]
-J{신용카드 결제 성공}
-X2[POS 현금결제 안내<br>키오스크 종료<br>customer count - 1]
-R2 ~~~ J
-J ~~~ X2
-end
-
-%% ============================
-%% 영수증
-%% Yes 중앙 / No 왼쪽
-%% ============================
-
-subgraph RECEIPT_ROW[" "]
-direction LR
-R3[영수증 미출력]
-K{영수증 출력}
-X3[영수증 미출력]
-R3 ~~~ K
-K ~~~ X3
-end
-
-L[영수증 출력]
-M[주문 완료<br/>customer count - 1]
-N([다음 고객 대기])
-
-%% ============================
-%% 중앙 메인 직렬 흐름
-%% ============================
-
-A --> B
-B --> C
-C --> D
-D --> E
-E --> F
-F --> G
-G --> H
-H -->|Yes| I
-I --> J
-J -->|Yes| K
-K -->|Yes| L
-L --> M
-M --> N
-
-%% ============================
-%% 주문 확정 No
-%% 왼쪽으로 빠짐
-%% ============================
-
-H -->|No| R1
-R1 --> D
-
-%% ============================
-%% 카드 결제 No
-%% 왼쪽으로 빠짐
-%% ============================
-
-J -->|No| R2
-R2 --> N
-
-%% ============================
-%% 영수증 No
-%% 왼쪽으로 빠짐
-%% ============================
-
-K -->|No| R3
-R3 --> M
-
-%% ============================
-%% 투명 균형 노드
-%% ============================
-
-style X1 fill:transparent,stroke:transparent,color:transparent
-style X2 fill:transparent,stroke:transparent,color:transparent
-style X3 fill:transparent,stroke:transparent,color:transparent
-
-%% ============================
-%% Subgraph 테두리 제거
-%% ============================
-
-style ORDER_ROW fill:transparent,stroke:transparent
-style CARD_ROW fill:transparent,stroke:transparent
-style RECEIPT_ROW fill:transparent,stroke:transparent
+    J --> K
+    H --> L([다음 고객 대기])
+    K --> L
 ```
 
 ---
