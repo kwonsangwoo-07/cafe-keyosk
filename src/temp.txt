@@ -1,0 +1,77 @@
+
+customer = 0
+
+손님입장 : customer +=1
+while customer:
+다 끝날때 customer -= 1
+
+class 메뉴출력():
+    def __init__ class 메뉴()
+    -*10:
+        display(메뉴)
+        display(메뉴 가격)
+        display(메뉴 재고) 
+
+
+
+
+
+
+
+class 메뉴():
+    [coffe : 
+        아메리카노(4500) , 
+        라떼(5000) ,  
+        에스프레소(3500)]   
+
+    [food : 
+        크로크무슈(6000) , 
+        햄샌드위치(5500), 
+        감자빵(4000)]
+    [md : 
+        텀블러(30000),  
+        머그컵(15000), 
+        키체인(13000)]
+class 커커퍼(커피):`
+class 커food(푸드):`
+class 커md(md):`
+
+재고관리 Inventory
+
+    아메리카노 : 30
+    라떼 : 20   
+    에스프레소 : 15
+    
+    크로크무슈 : 10
+    햄샌드위치 : 8
+    감자빵 : 12
+    
+    텀블러 : 5
+    머그컵 : 7
+    키체인 : 20
+
+
+장바구니 = []
+
+class 주문확정():
+    def __init__ 주문확정:
+        if 장바구니 담기 완료 in 주문확정:
+            return "결제 단계로 넘어갑니다"
+        else:
+            return 최초("메뉴를 선택한다")
+
+
+
+
+
+class 영수증():
+    def __init__ 영수증:
+        if 주문완료 in 영수증:
+            return "영수증 출력"
+        else:
+            return "영수증 받지않음"
+
+class 
+
+클래스 어드민
+   
