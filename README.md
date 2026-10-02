@@ -1036,3 +1036,19 @@ Cafe Kiosk Program
 ```
 
 이 문서는 실제 Python 코드를 작성하기 전, 전체 구조와 구현 순서를 정하기 위한 설계 문서로 사용한다.
+
+## 현재 코드 구조와 실행
+
+- `src/main.py`: 키오스크를 불러와 실행하는 진입점
+- `src/kiosk.py`: 상품 선택, 장바구니, 결제 흐름
+- `src/menu.py`: 상품 클래스와 메뉴 클래스
+- `src/menu_data.py`: 처음 표시할 상품명, 가격, 재고 데이터
+- `src/order.py`: 장바구니 항목과 주문
+- `src/payment.py`: 카드·현금 결제
+- `src/receipt.py`: 영수증과 대기시간 안내
+- `src/person.py`: 손님과 점원
+
+프로젝트 루트에서 `python src/main.py` 또는 `python -m src.main`으로 실행한다.
+음료는 사이즈와 샷·시럽 옵션, 푸드는 워밍/노워밍 옵션을 선택한다.
+MD 상품에는 추가 옵션이 없다.
+재고는 `Product.__stock`에 보관하고 `stock` 조회, `sell`, `restock`으로만 접근한다.
