@@ -226,7 +226,7 @@ class Kiosk:
             if extra in {"1", "2"}:
                 option += " + " + ("샷" if extra == "1" else "시럽")
                 option_price += 500
-        try:
+        try: # 형변환
             quantity = int(input("수량: "))
             if quantity < 1 or quantity > product.stock:
                 print(f"주문 수량을 확인해주세요. 현재 재고 {product.stock}개")
@@ -236,6 +236,7 @@ class Kiosk:
             return
         self.cart.append(CartItem(product, quantity, option, option_price))
         print(f"장바구니에 담았습니다. 현재 합계 {calculate_total(self.cart):,}원")
+
 
     def show_cart(self) -> None:
         if not self.cart:
